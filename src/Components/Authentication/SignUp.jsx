@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
-import collaboratorLogo from "../../logo.svg";
 import { useNavigate } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
-import { FaUserCircle } from 'react-icons/fa';
-import { useAuthContext } from '../../AuthProvider';
 
 const SignUpForm = () => {
-  //const { showToast } = useAuthContext();
   const navigate = useNavigate();
   const [focusField, setFocusField] = useState('');
   const [loading, setLoading] = useState(false);
@@ -26,19 +22,9 @@ const SignUpForm = () => {
   }, []);
 
   const handleChange = (e) => {
-    //const { name, value, type, checked } = e.target;
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    /*if (type === 'checkbox') {
-      setFormData({ ...formData, [name]: checked ? value : 'Guest' });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }*/
   };
-
-  /*const handleRoleChange = (role) => {
-    setFormData((prev) => ({ ...prev, role }));
-  };*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,14 +32,12 @@ const SignUpForm = () => {
       setLoading(true);
       const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/task-manager/auth/register`, formData);
       alert('Registration successful!');
-      //showToast("Registration successfull! 😇");
       navigate('/signIn');
     }
     catch (error) {
       console.error(error);
       setLoading(false);
       alert('Registration failed!' + error.response.data.error);
-      //showToast('Registration failed! ' + error.response.data.error);
     }
   };
 
@@ -67,8 +51,7 @@ const SignUpForm = () => {
 
   if (loading) {
     return <div className="bg-white w-full min-h-screen flex justify-center items-center">
-      <div>
-        <div className="animate-spin"><div className="lg:scale-[0.7] scale-[0.65] custom-loader"></div></div>
+      <div> 
         <p className='text-[14px] text-gray-700 font-[600]'>Registering you account In ...</p>
       </div>
     </div>;
@@ -79,10 +62,8 @@ const SignUpForm = () => {
       <div className='flex flex-col w-[90%] md:w-[500px] md:scale-[1] scale-[0.9]'>
 
         <div className="scale-[1.2] flex mx-auto">
-          {/*  <img src={collaboratorLogo} alt="Connection Failed" className="w-[34px] h-[30px] mt-[4px]" />
-          */}
           <div className="text-gray-600 ml-[4px] md:text-[25px] text-[25px] font-[700]">Task-<span className='text-gray-400'>Manager</span></div>
-        </div> 
+        </div>
         <div className='py-[35px] px-[25px] flex flex-col bg-white rounded-xl'>
 
           <form onSubmit={handleSubmit} className='lg:px-[15px]'>
@@ -157,8 +138,6 @@ const SignUpForm = () => {
             <button type="submit" className="hover:text-blue-100 hover:bg-blue-950 w-full my-[15px] bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800 rounded-lg text-white font-[500] py-[12px] transition duration-300">
               Sign Up
             </button>
-
-            {/* <p onClick={() => setIsModalOpen(true)} className='text-blue-600 underline mb-[8px] text-[15px] font-[600]'>Forgot Password</p> */}
           </form>
           <div className='w-full flex px-[12px] md:px-[19px]  items-center space-x-2'>
             <div className='w-[47%] h-[2px] bg-[#c5c5c5]'></div>
@@ -167,7 +146,6 @@ const SignUpForm = () => {
           </div>
 
           <p className='mx-auto cursor-pointer mt-[18px] text-gray-500 font-medium'>Already Have An Account?<span onClick={() => navigate("/signIn")} className='text-gray-700 ml-[8px] underline'>Sign In</span></p>
-
         </div>
 
       </div>

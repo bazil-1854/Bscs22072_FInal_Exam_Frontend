@@ -58,8 +58,7 @@ const SignInnForm = () => {
 
   if (loading) {
     return <div className="bg-white w-full min-h-screen flex justify-center items-center">
-      <div>
-        <div className="animate-spin"><div className="lg:scale-[0.7] scale-[0.65] custom-loader"></div></div>
+      <div> 
         <p className='text-[14px] text-gray-700 font-[600]'>Signing In ...</p>
       </div>
     </div>;

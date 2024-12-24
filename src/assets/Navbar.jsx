@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { FaBars, FaSearch, FaSlidersH, FaTimes, FaUserCircle } from 'react-icons/fa'; 
+import { FaBars, FaSlidersH, FaTimes, FaUserCircle } from 'react-icons/fa'; 
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { GiHamburgerMenu } from 'react-icons/gi';
-//import airbnb from "../logo.svg";
+import { GiHamburgerMenu } from 'react-icons/gi'; 
 
 import { motion } from 'framer-motion';
 import { useAuthContext } from '../AuthProvider'; 
@@ -27,7 +26,7 @@ const Navbar = () => {
     };
  
     return (
-        <header className="bg-white fixed w-full z-50 top-0"> 
+        <header className="bg-white fixed border-b-[2px] border-gray-300 w-full z-50 top-0"> 
             <nav className='md:block hidden'>
                 <div className={`${location.pathname === '/' ? 'border-white pt-4' : 'border-b-[3px] border-gray-100 py-4'} mx-auto px-4 sm:px-6 md:px-[15px] lg:px-[35px] xl:px-[75px]`}>
                     <div className="flex justify-between items-center ">
