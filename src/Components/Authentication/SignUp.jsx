@@ -69,8 +69,7 @@ const SignUpForm = () => {
     return <div className="bg-white w-full min-h-screen flex justify-center items-center">
       <div>
         <div className="animate-spin"><div className="lg:scale-[0.7] scale-[0.65] custom-loader"></div></div>
-        <p className='text-[14px] text-gray-700 font-[700]'>Registering Your Account In ...</p>
-        <p className='text-[14px] text-gray-500 font-[600]'>Please Wait</p>
+        <p className='text-[14px] text-gray-700 font-[600]'>Registering you account In ...</p>
       </div>
     </div>;
   }
@@ -83,28 +82,10 @@ const SignUpForm = () => {
           {/*  <img src={collaboratorLogo} alt="Connection Failed" className="w-[34px] h-[30px] mt-[4px]" />
           */}
           <div className="text-gray-600 ml-[4px] md:text-[25px] text-[25px] font-[700]">Task-<span className='text-gray-400'>Manager</span></div>
-        </div>
-        <p className='text-[15px] mb-[15px] text-center mt-[8px] text-gray-500 font-[400]'>Stay, Host, Explore. To start your adventure <span className='text-gray-700 font-[600]'>Register Now !!</span></p>
-
+        </div> 
         <div className='py-[35px] px-[25px] flex flex-col bg-white rounded-xl'>
+
           <form onSubmit={handleSubmit} className='lg:px-[15px]'>
-
-
-            {/*<div className="flex mb-[8px] justify-center space-x-4">
-              <label className={`flex items-center w-[50%] text-gray-600 space-x-2 p-2 border-2 rounded-lg cursor-pointer ${formData.role === 'Guest' ? 'border-gray-600 bg-gray-100' : 'border-gray-300'}`}
-                onClick={() => handleRoleChange('Guest')}
-              >
-                <FaUserCircle size={22} />
-                <span className='text-gray-950 text-[17px]'>Guest</span>
-              </label>
-              <label className={`flex items-center w-[50%] text-gray-600 space-x-2 p-2 border-2 rounded-lg cursor-pointer ${formData.role === 'Host' ? 'border-gray-600 bg-gray-100' : 'border-gray-300'}`}
-                onClick={() => handleRoleChange('Host')}
-              >
-                <FaUserCircle size={22} />
-                <span className='text-gray-950 text-[17px]'>Host</span>
-              </label>
-            </div>
-*/}
             <div className="relative mt-[25px] mb-6 flex items-center">
               <div className="bg-gray-700 mr-2 rounded-full flex items-center justify-center w-[40px] h-[40px]">
                 <CgProfile className="text-gray-50 text-[22px]" />

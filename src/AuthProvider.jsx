@@ -6,15 +6,8 @@ const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [searchfilters, setSearchFilters] = useState({});
-  const [userNotifications, setUserNotifications] = useState([]);
-  const [userRole, setUserRole] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [notifications, setNotifications] = useState([]);
-  const [notificationsCount, setNotificationsCount] = useState(0);
-  const [toast, setToast] = useState({ message: "", visible: false });
-  const toastTimeoutRef = useRef(null);
+  const [user, setUser] = useState(null); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -22,12 +15,12 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       const isValid = validateToken(token);
       if (isValid) {
-        fetchUserData(token);
-        fetchUserNotifications(token);
+        fetchUserData(token); 
       } else {
         handleLogout();
       }
-    } else {
+    } 
+    else {
       setLoading(false);
     }
   }, []);
@@ -48,32 +41,19 @@ export const AuthProvider = ({ children }) => {
   const fetchUserData = async (token) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_REACT_APP_API_BASE_URL}/air-bnb/profile/user-info`,
+        `${import.meta.env.VITE_REACT_APP_API_BASE_URL}/task-manager/profile/user-profile`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setUser(response.data);
-      setUserRole(response.data.role);
-    } catch (error) {
+      setUser(response.data); 
+    } 
+    catch (error) {
       console.error("Error fetching user data:", error);
       handleLogout();
-    } finally {
+    } 
+    finally {
       setLoading(false);
-    }
-  };
-
-  const fetchUserNotifications = async (token) => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_REACT_APP_API_BASE_URL}/air-bnb/profile/notifications`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setUserNotifications(response.data);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
     }
   };
 
@@ -84,48 +64,21 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setUser(null);
-    setUserRole(null);
-    setNotifications([]);
+    setUser(null); 
   };
 
   const logout = () => {
     handleLogout();
   };
-
-  const showToast = (message) => {
-    setToast({ message, visible: true });
-    if (toastTimeoutRef.current) {
-      clearTimeout(toastTimeoutRef.current);
-    }
-    toastTimeoutRef.current = setTimeout(() => {
-      setToast({ message: "", visible: false });
-    }, 6000);
-  };
-
-  const closeToast = () => {
-    if (toastTimeoutRef.current) {
-      clearTimeout(toastTimeoutRef.current);
-    }
-    setToast({ message: "", visible: false });
-  };
-
+ 
+ 
   return (
     <AuthContext.Provider
       value={{
-        user,
-        userRole,
+        user, 
         loading,
         login,
-        logout,
-        notifications,
-        notificationsCount,
-        userNotifications,
-        setSearchFilters,
-        searchfilters,
-        toast,
-        showToast,
-        closeToast,
+        logout, 
       }}
     >
       {children}

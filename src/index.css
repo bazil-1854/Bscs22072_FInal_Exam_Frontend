@@ -22,7 +22,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ff0048ab;
+  background-color: #666666ab;
   border-radius: 10px;
 }
 
@@ -38,7 +38,7 @@
   appearance: none;
   width: 8px; 
   padding-bottom: 20px;
-  background-color: #e4266c;  
+  background-color: #666666ab;  
   border-radius: 15px;
   cursor: pointer;
 }
@@ -52,7 +52,7 @@
   width: 8px; 
   margin-top: -15px;
   padding-top: 21px;
-  background-color: #e4266c;  
+  background-color: #666666ab;  
   border-radius: 15px;
   cursor: pointer;
 }
