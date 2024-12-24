@@ -123,14 +123,15 @@ const Home = () => {
 
     const handleDeleteTask = async (taskId) => {
         try {
+            console.log(taskId);
             const token = localStorage.getItem('token');
-            await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/task-manager/tasks/delete-task${editingTaskId}`, {
+            await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/task-manager/tasks/delete-task/${taskId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
             setSuccess('Task deleted successfully.');
 
-            const tasksResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/manageTasks/project/${projectId}`, {
+            const tasksResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/task-manager/tasks/user-tasks`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasksResponse.data.User_own_Tasks);
