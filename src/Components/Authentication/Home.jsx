@@ -81,6 +81,8 @@ const Home = () => {
     };
 
     const handleEditTask = async (task) => {
+        //setIsEditOpen(true);\
+        toggleEditMenu();
         setEditingTaskId(task._id);
         setNewTask({
             title: task.title,
@@ -93,8 +95,8 @@ const Home = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.patch(
-                `${import.meta.env.VITE_REACT_APP_API_BASE_URL}/task-manager/tasks/update-task/${editingTaskId}`,
+            await axios.put(
+                `${import.meta.env.VITE_REACT_APP_API_BASE_URL}/task-manager/tasks/update-a-task/${editingTaskId}`,
                 newTask,
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -145,7 +147,7 @@ const Home = () => {
     return (
         <div className='min-h-screen lg:px-[85px] px-[15px] bg-white flex flex-col pt-[80px]'>
 
-            {success && <p className="text-green-500 px-[15px] my-[4px] bg-green-100 rounded-lg mb-4">{success}</p>}
+            {success && <p className="text-green-500 px-[15px] my-[4px] py-[8px] bg-green-100 rounded-lg mb-4">{success}</p>}
             <h2 className="text-xl mt-[15px] font-semibold text-gray-800 mb-4">My Tasks</h2>
 
             <button onClick={toggleMenu} className='bg-green-800 text-white rounded-xl tetx-[16px] mb-[25px] w-[110px] py-[5px]'>
@@ -263,32 +265,7 @@ const Home = () => {
                             required
                         />
                     </div>
-                    <div>
-                        <label className="block text-gray-700">Status</label>
-                        <select
-                            name="status"
-                            value={newTask.status}
-                            onChange={handleChange}
-                            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-                        >
-                            <option value="Not Started">Not Started</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-gray-700">Priority</label>
-                        <select
-                            name="priority"
-                            value={newTask.priority}
-                            onChange={handleChange}
-                            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-                        >
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                    </div>
+                 
                     <div>
                         <label className="block text-gray-700">Due Date</label>
                         <input
@@ -299,114 +276,13 @@ const Home = () => {
                             className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
-                    <div>
-                        <label className="block text-gray-700">Assign To</label>
-                        <select
-                            name="assignedTo"
-                            value={newTask.assignedTo}
-                            onChange={handleChange}
-                            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-                        >
-                            <option value="">Select a user</option>
-                            {users.map((user) => (
-                                <option key={user._id} value={user._id}>
-                                    {user.email}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <button
-                        type="submit"
-                        className="bg-[#072f63] text-white px-4 py-2 rounded hover:bg-[#396fb6]">
-                        {editingTaskId ? 'Update Task' : 'Create Task'}
+                     
+                    <button type="submit" className="bg-[#072f63] text-white px-4 py-2 rounded hover:bg-[#396fb6]">
+                        Update Task
                     </button>
                 </form>
             }
-
-
-
-            {/*<h3 className="text-lg font-semibold text-gray-700 mt-6">{editingTaskId ? 'Edit Task' : 'Create New Task'}</h3>
-      <form onSubmit={editingTaskId ? handleUpdateTask : handleCreateTask} className="space-y-4">
-        <div>
-          <label className="block text-gray-700">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={newTask.title}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700">Description</label>
-          <textarea
-            name="description"
-            value={newTask.description}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700">Status</label>
-          <select
-            name="status"
-            value={newTask.status}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="Not Started">Not Started</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-gray-700">Priority</label>
-          <select
-            name="priority"
-            value={newTask.priority}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-gray-700">Due Date</label>
-          <input
-            type="date"
-            name="dueDate"
-            value={newTask.dueDate}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700">Assign To</label>
-          <select
-            name="assignedTo"
-            value={newTask.assignedTo}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="">Select a user</option>
-            {users.map((user) => (
-              <option key={user._id} value={user._id}>
-                {user.email}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button
-          type="submit"
-          className="bg-[#072f63] text-white px-4 py-2 rounded hover:bg-[#396fb6]">
-          {editingTaskId ? 'Update Task' : 'Create Task'}
-        </button>
-      </form>
-      */}
+ 
         </div>
     );
 };

@@ -7,10 +7,8 @@ This project allows a user to create, update and delete his own tasks.
 - **Signup Page**: A registration api for new users.
 - **Login Page**: A login api for existing users. 
 
-
 ### User Profile
 - **Profile**: user can see his details
-
 
 ### Backend Security
 - **Role-Based Access Control**: Routes are protected based on user roles
