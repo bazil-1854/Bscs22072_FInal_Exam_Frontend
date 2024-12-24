@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../AuthProvider';
-import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai'; 
+import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
 
 const SignInnForm = () => {
   const navigate = useNavigate();
@@ -37,17 +37,17 @@ const SignInnForm = () => {
       //localStorage.setItem('token', response.data.token);
       //login(response.data.token);
       localStorage.setItem("token", response.data.token);
-      alert('Login successful!'); 
+      alert('Login successful!');
       navigate('/profile');
 
     }
     catch (error) {
       console.error(error);
       setLoading(false);
-      alert('Login failed!'); 
+      alert('Login failed!');
     }
   };
-  
+
   const handleFocus = (field) => {
     setFocusField(field);
   };
@@ -58,7 +58,7 @@ const SignInnForm = () => {
 
   if (loading) {
     return <div className="bg-white w-full min-h-screen flex justify-center items-center">
-      <div> 
+      <div>
         <p className='text-[14px] text-gray-700 font-[600]'>Signing In ...</p>
       </div>
     </div>;
@@ -68,10 +68,10 @@ const SignInnForm = () => {
     <main className='h-screen w-full pt-[75px] flex justify-center items-center bg-gray-100'>
       <div className='flex flex-col w-[90%] md:w-[500px] md:scale-[1] scale-[0.9]'>
 
-        <div className="scale-[1.2] flex mx-auto"> 
+        <div className="scale-[1.2] flex mx-auto">
           <div className="text-gray-600 ml-[4px] md:text-[25px] text-[25px] font-[700]">Task-<span className='text-gray-400'>Manager</span></div>
-        </div> 
-        
+        </div>
+
         <div className='py-[35px] px-[25px] flex flex-col bg-white rounded-xl'>
           <form onSubmit={handleSubmit} className='lg:px-[15px]'>
             <div className="relative mt-4 mb-6 flex items-center">
@@ -122,16 +122,15 @@ const SignInnForm = () => {
             <button type="submit" className="hover:text-blue-100 hover:bg-blue-950 w-full my-[15px] bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 rounded-lg text-white font-[500] py-[12px] transition duration-300">
               Sign In
             </button>
-
-            {/* <p onClick={() => setIsModalOpen(true)} className='text-blue-600 underline mb-[8px] text-[15px] font-[600]'>Forgot Password</p> */}
           </form>
+
           <div className='w-full flex px-[12px] md:px-[19px]  items-center space-x-2'>
             <div className='w-[47%] h-[2px] bg-[#c5c5c5]'></div>
             <p className='text-gray-500 w-[4%] text-[14px]'>OR</p>
             <div className='w-[47%] h-[2px] bg-[#c5c5c5]'></div>
           </div>
 
-          <p className='mx-auto cursor-pointer mt-[18px] text-gray-500 font-medium'>Dont Have An Account?<span onClick={() => navigate("/")} className='text-gray-700 ml-[8px] underline'>Sign Up</span></p>
+          <p className='mx-auto cursor-pointer mt-[18px] text-gray-500 font-medium'>Dont Have An Account?<span onClick={() => navigate("/signUp")} className='text-gray-700 ml-[8px] underline'>Sign Up</span></p>
 
         </div>
       </div>

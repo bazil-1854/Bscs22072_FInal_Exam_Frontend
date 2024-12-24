@@ -19,8 +19,7 @@ const Navbar = () => {
  
  
     const handleLogout = () => {
-        //localStorage.removeItem('token');
-        logout();
+        //localStorage.removeItem('token'); 
         toggleMenu();
         navigate('/signin');
     };
