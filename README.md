@@ -11,7 +11,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/bazil-1854/BSCS22072_AirBnb_Client.git
+   git clone https://github.com/bazil-1854/Bscs22072_FInal_Exam_Frontend.git
    cd <where-you-cloned>
    ```
 
